@@ -12,9 +12,11 @@ datasource db {
 
 model Post {
     id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    sender    String   @map("sender") @db.VarChar(255)
+    post      String   @map("post") @db.Text
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
 
-    @@index([name])
+    @@index([post])
+    @@map("posts")
 }
